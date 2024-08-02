@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MuyanQR</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<div class="container">
+    <p>请输产品id</p>
+    <input type="text" placeholder="产品id" id="idText" value="820404201542">
+    <div id="imgBox">
+        <img src="" id="qrImage">
+    </div>
+    <button onclick="generateQR()">生成二维码</button>
+</div>
+<script>
+    let imgBox = document.getElementById("imgBox");
+    let qrImage = document.getElementById("qrImage");
+    let idText = document.getElementById("idText");
+
+    function generateQR() {
+        if (idText.value.length > 0) {
+            let qrText = `https://item.taobao.com/item.htm?id=${idText.value}&shareNDParams=%7B%22newType%22:%22item%22,%22xxc%22:%22home_recommend%22,%22share_entryspm%22:%22a2141.1.guessitemtab_1.4%22,%22ndOpenType%22:%22mvp%22,%22guideExp%22:%22superItem%22,%22spm%22:%22a2141.1.guessitemtab_1.4%22,%22entryNDNid%22:%22796885513239%22,%22newDetailChannel%22:%22guess%22,%22ndExp%22:%22content%22,%22id%22:%22796885513239%22,%22currentSubType%22:%22newitem%22%7D&iconType=commonIconType&hybrid_nd=true&sourceType=other&suid=f6243a5f-ced9-40a1-ac72-9def8aca290b&ut_sk=1.YyGft4rWwD8DAPIJgOyw94Mr_21646297_1722590127614.Copy.newdetail&un=22ffd1147b452ce44b68d5f77a161062&share_crt_v=1&un_site=0&spm=a2159r.13376460.0.0&sp_tk=THhTbzNkbkJzOVE=&cpp=1&shareurl=true&short_name=h.gkaUfR9&bxsign=scdOe-4ZfxcoqU0Q0nXjBEOgVHZ2vwUOfWpXLbKXRN66uHZcS5AYocRGNJj-iEPOFbOH8qM04F7jBmmOCTQ9Svyp4yMAdtW5UZ4bz_ld9zKz2DR3LPfFoMf2ipd0Wrc2T7b&tk=LxSo3dnBs9Q%20MF7997&app=chrome&sku_properties=1627207:42205561`
+            qrImage.src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${qrText}`;
+            imgBox.classList.add("show-img")
+        } else {
+            idText.classList.add("error")
+            setTimeout(() => {
+                idText.classList.remove('error')
+            }, 1000)
+        }
+    }
+</script>
+
+<body>
+
+</body>
+
+</html>
